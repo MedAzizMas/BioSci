@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genomic Analysis - BioSci AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/genomic.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="genomic-page">
+
+    <!-- Particle Background Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="{{ url_for('home') }}" class="brand">
+                <img src="https://r.mobirisesite.com/2107618/assets/images/photo-1738082956242-d897b9177bba.jpeg"
+                    alt="BioSci Logo" style="border-radius: 50%;">
+                BioSci
+            </a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('home') }}#features" class="nav-link">About</a>
+                <a href="{{ url_for('home') }}#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="mobile-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="genomic-main">
+        <div class="genomic-container">
+            <!-- Sidebar -->
+            <aside class="genomic-sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-chart-bar"></i> Knowledge Graph Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-icon">🦠</span>
+                            <div class="stat-info">
+                                <span class="stat-value counter" data-target="{{ stats.diseases }}">0</span>
+                                <span class="stat-label">Diseases</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">💊</span>
+                            <div class="stat-info">
+                                <span class="stat-value counter" data-target="{{ stats.chemicals }}">0</span>
+                                <span class="stat-label">Chemicals</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🧬</span>
+                            <div class="stat-info">
+                                <span class="stat-value counter" data-target="{{ stats.genes }}">0</span>
+                                <span class="stat-label">Genes</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🔄</span>
+                            <div class="stat-info">
+                                <span class="stat-value counter" data-target="{{ stats.pathways }}">0</span>
+                                <span class="stat-label">Pathways</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card full-width">
+                        <span class="stat-icon">🔗</span>
+                        <div class="stat-info">
+                            <span class="stat-value counter" data-target="4717439">0</span>
+                            <span class="stat-label">Relationships</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-lightbulb"></i> Example Questions</h3>
+                    <div class="example-questions">
+                        <button class="example-btn" data-question="What drugs can treat diabetes?">
+                            What drugs can treat diabetes?
+                        </button>
+                        <button class="example-btn" data-question="What genes are associated with Alzheimer's disease?">
+                            What genes are associated with Alzheimer's?
+                        </button>
+                        <button class="example-btn" data-question="What does Metformin treat?">
+                            What does Metformin treat?
+                        </button>
+                        <button class="example-btn" data-question="What pathways are involved in cancer?">
+                            What pathways are involved in cancer?
+                        </button>
+                        <button class="example-btn" data-question="What chemicals interact with the BRCA1 gene?">
+                            What chemicals interact with BRCA1?
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-sliders-h"></i> Settings</h3>
+                    <div class="setting-item">
+                        <label for="topK">Sources to retrieve</label>
+                        <input type="range" id="topK" min="3" max="20" value="10">
+                        <span id="topKValue">10</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="genomic-content">
+                <div class="page-header">
+                    <h1><i class="fas fa-dna"></i> BioMed Knowledge Graph Assistant</h1>
+                    <p>Ask questions about diseases, drugs, genes, and biological pathways</p>
+                </div>
+
+                <!-- Search Box -->
+                <div class="search-container">
+                    <form id="searchForm" class="search-form">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="questionInput" name="question" 
+                                   placeholder="e.g., What drugs can treat diabetes?" autocomplete="off">
+                            <button type="button" id="voiceBtn" class="voice-btn" title="Voice input">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <!-- Autocomplete Dropdown -->
+                            <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary search-btn">
+                            <i class="fas fa-paper-plane"></i> Search
+                        </button>
+                    </form>
+                    <div id="voiceStatus" class="voice-status" style="display: none;">
+                        <span class="voice-indicator"></span>
+                        <span id="voiceStatusText">Listening...</span>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div id="resultsArea" class="results-area" style="display: none;">
+                    <!-- Skeleton Loading -->
+                    <div id="loadingIndicator" class="skeleton-container" style="display: none;">
+                        <!-- Answer Skeleton -->
+                        <div class="skeleton-section">
+                            <div class="skeleton-header">
+                                <div class="skeleton-icon"></div>
+                                <div class="skeleton-title"></div>
+                            </div>
+                            <div class="skeleton-box">
+                                <div class="skeleton-line full"></div>
+                                <div class="skeleton-line full"></div>
+                                <div class="skeleton-line medium"></div>
+                                <div class="skeleton-line full"></div>
+                                <div class="skeleton-line short"></div>
+                            </div>
+                            <p id="loadingText" class="skeleton-status">Thinking...</p>
+                        </div>
+                        
+                        <!-- Graph Skeleton -->
+                        <div class="skeleton-section">
+                            <div class="skeleton-header">
+                                <div class="skeleton-icon"></div>
+                                <div class="skeleton-title"></div>
+                            </div>
+                            <div class="skeleton-graph">
+                                <div class="skeleton-node node-1"></div>
+                                <div class="skeleton-node node-2"></div>
+                                <div class="skeleton-node node-3"></div>
+                                <div class="skeleton-node node-4"></div>
+                                <div class="skeleton-node node-5"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sources Skeleton -->
+                        <div class="skeleton-section">
+                            <div class="skeleton-header">
+                                <div class="skeleton-icon"></div>
+                                <div class="skeleton-title"></div>
+                            </div>
+                            <div class="skeleton-sources">
+                                <div class="skeleton-source-card"></div>
+                                <div class="skeleton-source-card"></div>
+                                <div class="skeleton-source-card"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Answer Section -->
+                    <div id="answerSection" class="answer-section" style="display: none;">
+                        <div class="answer-header">
+                            <h2><i class="fas fa-clipboard-check"></i> Answer</h2>
+                            <div class="answer-actions">
+                                <button id="translateBtn" class="translate-btn" title="Translate to French">
+                                    <i class="fas fa-language"></i>
+                                    <span>🇫🇷 French</span>
+                                </button>
+                                <button id="speakBtn" class="speak-btn" title="Read answer aloud">
+                                    <i class="fas fa-volume-up"></i>
+                                    <span>Listen</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="answerContent" class="answer-box"></div>
+                        
+                        <!-- Entity Legend (disabled for now) -->
+                        <!--
+                        <div class="entity-legend">
+                            <span class="legend-item"><span class="legend-dot disease"></span> Disease</span>
+                            <span class="legend-item"><span class="legend-dot chemical"></span> Drug/Chemical</span>
+                            <span class="legend-item"><span class="legend-dot gene"></span> Gene</span>
+                            <span class="legend-item"><span class="legend-dot pathway"></span> Pathway</span>
+                            <span class="legend-item" style="margin-left: auto; font-style: italic;">Click any entity to search</span>
+                        </div>
+                        -->
+                        
+                        <!-- Follow-up Questions -->
+                        <div id="followupSection" class="followup-section" style="display: none;">
+                            <h3><i class="fas fa-lightbulb"></i> You might also want to ask...</h3>
+                            <div id="followupQuestions" class="followup-questions"></div>
+                        </div>
+                    </div>
+
+                    <!-- Graph Visualization -->
+                    <div id="graphSection" class="graph-section" style="display: none;">
+                        <h2><i class="fas fa-project-diagram"></i> Knowledge Graph Visualization</h2>
+                        <p class="graph-hint">Interactive graph showing entities and relationships. Drag nodes to explore!</p>
+                        <div id="graphContainer" class="graph-container"></div>
+                    </div>
+
+                    <!-- Sources Section -->
+                    <div id="sourcesSection" class="sources-section" style="display: none;">
+                        <h2><i class="fas fa-book-open"></i> Sources from Knowledge Graph</h2>
+                        <div id="sourcesContainer" class="sources-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>BioSci</h3>
+                <p class="copyright">© 2024 BioSci AI. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/genomic.js') }}"></script>
+</body>
+
+</html>

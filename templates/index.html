@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSci AI - Unlocking Biological Insights</title>
+    <meta name="description" content="AI in Bioinformatics: Uncovering Relationships and Protein Alignment Solutions">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <img src="https://r.mobirisesite.com/2107618/assets/images/photo-1738082956242-d897b9177bba.jpeg"
+                    alt="BioSci Logo" style="border-radius: 50%;">
+                BioSci
+            </a>
+            <div class="nav-links">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <a href="#features" class="btn btn-primary sm header-btn">Get Started</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="mobile-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-section">
+        <video autoplay muted loop playsinline id="heroVideo">
+            <source src="{{ url_for('static', filename='videos/dna_abstract.mp4') }}" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">BioSci AI</h1>
+            <p class="hero-subtitle">Uncovering Relationships in Human Genomics</p>
+            <div class="hero-buttons">
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Marquee Bar -->
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <div class="marquee-item">RELATIONSHIP MAPPING</div>
+            <div class="marquee-item">•</div>
+            <div class="marquee-item">PROTEIN ALIGNMENT</div>
+            <div class="marquee-item">•</div>
+            <div class="marquee-item">GENE SEQUENCING</div>
+            <div class="marquee-item">•</div>
+            <div class="marquee-item">RELATIONSHIP MAPPING</div>
+            <div class="marquee-item">•</div>
+            <div class="marquee-item">PROTEIN ALIGNMENT</div>
+            <div class="marquee-item">•</div>
+            <div class="marquee-item">GENE SEQUENCING</div>
+            <div class="marquee-item">•</div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="section padding-lg bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Unlocking Biological Insights</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="grid-3">
+                <!-- Feature 1 - Genomic Analysis -->
+                <div class="feature-card animate-on-scroll stagger-1">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Genomic Analysis</h3>
+                    <p>Advanced algorithms to decode complex genetic sequences and identify key markers for research.
+                    </p>
+                    <a href="{{ url_for('genomic') }}" class="learn-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Feature 2 - Protein Alignment -->
+                <div class="feature-card animate-on-scroll stagger-2">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Protein Alignment</h3>
+                    <p>High-precision alignment tools designed to compare protein structures with incredible accuracy.
+                    </p>
+                    <a href="{{ url_for('protein') }}" class="learn-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Detailed Features Section -->
+    <section class="section padding-lg bg-dark text-white">
+        <div class="container">
+            <div class="row align-center">
+                <div class="col-half slide-left">
+                    <h2 class="display-title">Empowering Research with Intelligence</h2>
+                    <p class="lead-text">Our platform reduces the complexity of biological data analysis, allowing you
+                        to focus on the discoveries that matter.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Real-time sequence alignment</li>
+                        <li><i class="fas fa-check-circle"></i> Predictive structural modeling</li>
+                        <li><i class="fas fa-check-circle"></i> Cloud-native collaboration</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-4 btn-pulse">Discover Platform</a>
+                </div>
+                <div class="col-half slide-right">
+                    <img src="https://r.mobirisesite.com/2107618/assets/images/photo-1744986014553-e5e866de814b.jpeg"
+                        alt="Analytics Dashboard" class="rounded-img shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section padding-lg bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Answers to Your Questions</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is the primary AI function?</h3>
+                        <span class="faq-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI offers two main functions: a chatbot for querying relationships between diseases,
+                            chemicals, pathways, and genes, and an advanced alignment solution for comparing protein
+                            similarities between species.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How does the chatbot help bioinformaticians?</h3>
+                        <span class="faq-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The chatbot acts as an intelligent assistant, rapidly providing connections and information
+                            on complex biological entities, streamlining research and hypothesis generation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What does the alignment AI do?</h3>
+                        <span class="faq-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The alignment AI compares protein sequences across different species to identify
+                            similarities, evolutionary relationships, and functional domains with high precision and
+                            speed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is the alignment tool for human vs bacteria only?</h3>
+                        <span class="faq-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, our alignment tool supports comparisons across a wide range of species including mammals,
+                            plants, fungi, and microorganisms, enabling comprehensive cross-species analysis.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I get data on specific pathways?</h3>
+                        <span class="faq-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, our chatbot can provide detailed information about metabolic pathways, signaling
+                            cascades, and gene regulatory networks, including their interactions with diseases and
+                            chemicals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Image Scroll Section -->
+    <section class="section scroll-gallery-section" style="overflow: hidden; padding: 60px 0; background: #000;">
+        <div class="scroll-row row-left">
+            <div class="scroll-track">
+                <img src="{{ url_for('static', filename='images/dna_helix.png') }}" alt="DNA Helix">
+                <img src="{{ url_for('static', filename='images/protein_structure.png') }}" alt="Protein Structure">
+                <img src="{{ url_for('static', filename='images/neural_network.png') }}" alt="Neural Network">
+                <img src="{{ url_for('static', filename='images/genomic_data.png') }}" alt="Genomic Data">
+                <img src="{{ url_for('static', filename='images/cells.png') }}" alt="Cells">
+                <img src="{{ url_for('static', filename='images/ai_brain.png') }}" alt="AI Brain">
+                <img src="{{ url_for('static', filename='images/dna_helix.png') }}" alt="DNA Helix">
+                <img src="{{ url_for('static', filename='images/protein_structure.png') }}" alt="Protein Structure">
+                <img src="{{ url_for('static', filename='images/neural_network.png') }}" alt="Neural Network">
+                <img src="{{ url_for('static', filename='images/genomic_data.png') }}" alt="Genomic Data">
+                <img src="{{ url_for('static', filename='images/cells.png') }}" alt="Cells">
+                <img src="{{ url_for('static', filename='images/ai_brain.png') }}" alt="AI Brain">
+            </div>
+        </div>
+        <div class="scroll-row row-right" style="margin-top: 20px;">
+            <div class="scroll-track">
+                <img src="{{ url_for('static', filename='images/ai_brain.png') }}" alt="AI Brain">
+                <img src="{{ url_for('static', filename='images/cells.png') }}" alt="Cells">
+                <img src="{{ url_for('static', filename='images/genomic_data.png') }}" alt="Genomic Data">
+                <img src="{{ url_for('static', filename='images/neural_network.png') }}" alt="Neural Network">
+                <img src="{{ url_for('static', filename='images/protein_structure.png') }}" alt="Protein Structure">
+                <img src="{{ url_for('static', filename='images/dna_helix.png') }}" alt="DNA Helix">
+                <img src="{{ url_for('static', filename='images/ai_brain.png') }}" alt="AI Brain">
+                <img src="{{ url_for('static', filename='images/cells.png') }}" alt="Cells">
+                <img src="{{ url_for('static', filename='images/genomic_data.png') }}" alt="Genomic Data">
+                <img src="{{ url_for('static', filename='images/neural_network.png') }}" alt="Neural Network">
+                <img src="{{ url_for('static', filename='images/protein_structure.png') }}" alt="Protein Structure">
+                <img src="{{ url_for('static', filename='images/dna_helix.png') }}" alt="DNA Helix">
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section padding-lg bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">The passionate minds behind BioSci AI</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card animate-on-scroll stagger-1">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/mohamed_aziz_masmoudi.jpg') }}" alt="Mohamed Aziz Masmoudi">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mohamed Aziz Masmoudi</h3>
+                        <p class="team-role">Developer</p>
+                    </div>
+                </div>
+
+                <div class="team-card animate-on-scroll stagger-2">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/hazem_mbarek.jpg') }}" alt="Hazem Mbarek">
+                    </div>
+                    <div class="team-info">
+                        <h3>Hazem Mbarek</h3>
+                        <p class="team-role">Developer</p>
+                    </div>
+                </div>
+
+                <div class="team-card animate-on-scroll stagger-3">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/ala_kammoun.jpg') }}" alt="Ala Kammoun">
+                    </div>
+                    <div class="team-info">
+                        <h3>Ala Kammoun</h3>
+                        <p class="team-role">Developer</p>
+                    </div>
+                </div>
+
+                <div class="team-card animate-on-scroll stagger-4">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/nour_chokri.jpg') }}" alt="Nour Chokri">
+                    </div>
+                    <div class="team-info">
+                        <h3>Nour Chokri</h3>
+                        <p class="team-role">Developer</p>
+                    </div>
+                </div>
+
+                <div class="team-card animate-on-scroll stagger-5">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/ranim_ammar.jpg') }}" alt="Ranim Ammar">
+                    </div>
+                    <div class="team-info">
+                        <h3>Ranim Ammar</h3>
+                        <p class="team-role">Developer</p>
+                    </div>
+                </div>
+
+                <div class="team-card animate-on-scroll stagger-6">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/doua_boudokhan.jpg') }}" alt="Doua Boudokhan">
+                    </div>
+                    <div class="team-info">
+                        <h3>Doua Boudokhan</h3>
+                        <p class="team-role">Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section padding-lg bg-darker">
+        <div class="container">
+            <div class="section-header text-center text-white">
+                <h2 class="section-title">Contact Us</h2>
+                <p>We are here to assist you with your bioinformatics needs.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@biosci-ai.example</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Biotech Blvd, Science City, CA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form scale-up">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>BioSci</h3>
+                <p class="copyright">© 2024 BioSci AI. All Rights Reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#features">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

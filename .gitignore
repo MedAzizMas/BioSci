@@ -1,0 +1,105 @@
+# ==========================================
+# BioSci AI - Git Ignore
+# ==========================================
+
+# ==========================================
+# DATA FILES (Large/Sensitive)
+# ==========================================
+protein_data/
+protein_cache/
+data/
+
+# ==========================================
+# API KEYS & SECRETS
+# ==========================================
+# Never commit API keys!
+*.env
+.env
+.env.local
+.env.production
+secrets.py
+config_local.py
+
+# ==========================================
+# PYTHON
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+graphrag_env/
+venv/
+ENV/
+env/
+.venv/
+
+# ==========================================
+# JUPYTER NOTEBOOKS
+# ==========================================
+.ipynb_checkpoints/
+*.ipynb
+
+# ==========================================
+# IDE & EDITORS
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ==========================================
+# OS FILES
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==========================================
+# LOGS & TEMP FILES
+# ==========================================
+*.log
+*.tmp
+*.temp
+logs/
+
+# ==========================================
+# MODEL CACHE (Large files)
+# ==========================================
+*.pkl
+*.npy
+*.faiss
+*.pt
+*.pth
+*.bin
+*.h5
+
+# ==========================================
+# MISC
+# ==========================================
+*.bak
+*.backup

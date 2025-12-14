@@ -1,0 +1,52 @@
+# BioSci AI - Requirements
+# Python 3.9+ recommended
+
+# Web Framework
+Flask==3.0.0
+Werkzeug==3.0.0
+Jinja2==3.1.6
+
+# Data Processing
+numpy==2.3.5
+pandas==2.3.3
+pyarrow==22.0.0
+
+# Machine Learning & Embeddings
+torch==2.9.1
+sentence-transformers==5.1.2
+transformers==4.57.3
+fair-esm==2.0.0
+safetensors==0.7.0
+tokenizers==0.22.1
+
+# Vector Search
+faiss-cpu==1.13.1
+
+# LLM APIs
+openai==2.9.0
+groq==0.37.1
+httpx==0.28.1
+
+# Visualization
+pyvis==0.3.2
+networkx==3.6.1
+pillow==12.0.0
+
+# Bioinformatics
+biopython==1.81
+
+# Scientific Computing
+scikit-learn==1.7.2
+scipy==1.16.3
+
+# Utilities
+requests==2.32.5
+tqdm==4.67.1
+PyYAML==6.0.3
+huggingface-hub==0.36.0
+joblib==1.5.2
+
+# Optional - for Jupyter notebooks
+# jupyter==1.1.1
+# jupyterlab==4.5.0
+# streamlit==1.52.1
