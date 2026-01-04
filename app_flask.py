@@ -42,7 +42,7 @@ def load_resources():
     embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
     
     # Setup LLM client
-    from secrets import TOKENFACTORY_API_KEY
+    from app_secrets import TOKENFACTORY_API_KEY
     http_client = httpx.Client(verify=False)
     llm_client = OpenAI(
         api_key=TOKENFACTORY_API_KEY,
@@ -572,7 +572,17 @@ def get_protein_structure(protein_id):
 
 
 if __name__ == '__main__':
+    import sys
     print("Loading resources...")
     load_resources()
     print("Resources loaded! Starting server...")
-    app.run(debug=True, port=5000)
+    
+    # Use stat reloader instead of watchdog to avoid watching venv folders
+    # Or disable reloader entirely for production-like stability
+    use_reloader = '--no-reload' not in sys.argv
+    app.run(
+        debug=True, 
+        port=5000,
+        use_reloader=use_reloader,
+        reloader_type='stat'  # 'stat' is slower but doesn't watch venv folders aggressively
+    )

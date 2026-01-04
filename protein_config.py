@@ -45,7 +45,7 @@ EMBEDDING_BATCH_SIZE = 8
 DEVICE = "cuda"  # Change to "cpu" if no GPU available
 
 # Groq API settings
-from secrets import GROQ_API_KEY as _GROQ_KEY
+from app_secrets import GROQ_API_KEY as _GROQ_KEY
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", _GROQ_KEY)
 GROQ_MODEL = "llama-3.3-70b-versatile"
 GROQ_TEMPERATURE = 0.1

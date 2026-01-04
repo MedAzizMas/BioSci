@@ -103,3 +103,5 @@ logs/
 # ==========================================
 *.bak
 *.backup
+biosci_env/
+app_secrets.py

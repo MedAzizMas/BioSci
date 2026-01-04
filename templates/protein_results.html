@@ -144,6 +144,123 @@
                         <p>{{ results.llm_analysis.conclusion }}</p>
                     </div>
                 </div>
+
+                <!-- Coverage Analysis -->
+                {% if results.llm_analysis.coverage_analysis %}
+                <div class="analysis-detail-box">
+                    <h3><i class="fas fa-chart-pie"></i> Coverage Analysis</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Human Coverage</span>
+                            <span class="detail-value">{{ "%.1f"|format(results.llm_analysis.coverage_analysis.human_coverage_pct) }}%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Bacteria Coverage</span>
+                            <span class="detail-value">{{ "%.1f"|format(results.llm_analysis.coverage_analysis.bacteria_coverage_pct) }}%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Independent Alignments</span>
+                            <span class="detail-value">{{ results.llm_analysis.coverage_analysis.num_independent_alignments }}</span>
+                        </div>
+                    </div>
+                    <p class="interpretation-text">{{ results.llm_analysis.coverage_analysis.coverage_interpretation }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Descriptor Pattern Analysis -->
+                {% if results.llm_analysis.descriptor_pattern_analysis %}
+                <div class="analysis-detail-box">
+                    <h3><i class="fas fa-fingerprint"></i> Descriptor Pattern Analysis</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Overall Agreement</span>
+                            <span class="detail-value badge {{ 'badge-success' if results.llm_analysis.descriptor_pattern_analysis.overall_descriptor_agreement == 'Strong' else 'badge-warning' if results.llm_analysis.descriptor_pattern_analysis.overall_descriptor_agreement == 'Mixed' else 'badge-danger' }}">
+                                {{ results.llm_analysis.descriptor_pattern_analysis.overall_descriptor_agreement }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="descriptor-lists">
+                        <div class="descriptor-list matching">
+                            <h4><i class="fas fa-check-circle"></i> Strongest Matching</h4>
+                            <ul>
+                                {% for desc in results.llm_analysis.descriptor_pattern_analysis.strongest_matching_descriptors %}
+                                <li>{{ desc }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="descriptor-list divergent">
+                            <h4><i class="fas fa-times-circle"></i> Divergent</h4>
+                            <ul>
+                                {% for desc in results.llm_analysis.descriptor_pattern_analysis.divergent_descriptors %}
+                                <li>{{ desc }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="interpretation-text">{{ results.llm_analysis.descriptor_pattern_analysis.pattern_interpretation }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Domain Analysis -->
+                {% if results.llm_analysis.domain_analysis %}
+                <div class="analysis-detail-box">
+                    <h3><i class="fas fa-puzzle-piece"></i> Domain Analysis</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Domains Overlap</span>
+                            <span class="detail-value badge {{ 'badge-success' if results.llm_analysis.domain_analysis.domains_overlap else 'badge-warning' }}">
+                                {{ 'Yes' if results.llm_analysis.domain_analysis.domains_overlap else 'No' }}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="interpretation-text">{{ results.llm_analysis.domain_analysis.domain_interpretation }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Motif Analysis -->
+                {% if results.llm_analysis.motif_analysis %}
+                <div class="analysis-detail-box">
+                    <h3><i class="fas fa-search"></i> Motif Analysis</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Specific Shared Motifs</span>
+                            <span class="detail-value badge {{ 'badge-success' if results.llm_analysis.motif_analysis.has_specific_shared_motifs else 'badge-warning' }}">
+                                {{ 'Yes' if results.llm_analysis.motif_analysis.has_specific_shared_motifs else 'No' }}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="interpretation-text">{{ results.llm_analysis.motif_analysis.motif_interpretation }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Membrane Topology -->
+                {% if results.llm_analysis.membrane_topology %}
+                <div class="analysis-detail-box">
+                    <h3><i class="fas fa-layer-group"></i> Membrane Topology</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Both Membrane Proteins</span>
+                            <span class="detail-value badge {{ 'badge-success' if results.llm_analysis.membrane_topology.both_membrane_proteins else 'badge-info' }}">
+                                {{ 'Yes' if results.llm_analysis.membrane_topology.both_membrane_proteins else 'No' }}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="interpretation-text">{{ results.llm_analysis.membrane_topology.topology_note }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Alternative Hypotheses -->
+                {% if results.llm_analysis.alternative_hypotheses %}
+                <div class="analysis-detail-box">
+                    <h3><i class="fas fa-lightbulb"></i> Alternative Hypotheses</h3>
+                    <div class="hypotheses-list">
+                        {% for hypothesis in results.llm_analysis.alternative_hypotheses %}
+                        <span class="hypothesis-tag">{{ hypothesis }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
             </section>
             {% endif %}
 

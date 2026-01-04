@@ -142,7 +142,7 @@ def search_pfam_domains(sequence, protein_id="unknown"):
     import uuid
     
     # ⚠️ UPDATE THIS PATH to match your WSL username
-    WSL_USERNAME = "doua"  # Your WSL username
+    WSL_USERNAME = "moham"  # Your WSL username
     PFAM_DIR = f"/home/{WSL_USERNAME}/pfam"
     PFAM_SCAN_PATH = f"{PFAM_DIR}/PfamScan/pfam_scan.pl"
     
